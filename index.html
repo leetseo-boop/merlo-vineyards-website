@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merlo Family Estate Vineyards | Award-Winning Winery in Folsom & Sacramento</title>
+<meta name="description" content="Savor award-winning California wines at Merlo Family Estate Vineyards, a premier winery in Folsom, Sacramento Area. Discover bold, refined flavors from Hyampom Valley.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Raleway:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --burg:#6B1F2A;
+  --burg-dk:#45131B;
+  --burg-lt:#8B3A47;
+  --gold:#C49A3B;
+  --gold-lt:#E2C06A;
+  --cream:#F5F0E8;
+  --cream-dk:#EDE5D5;
+  --espresso:#1C1410;
+  --text:#2C1810;
+  --text-md:#5C4A40;
+  --white:#fff;
+  --nav-h:80px;
+  --trans:all .35s cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Raleway',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ─── UTILITY ─── */
+.container{max-width:1200px;margin:0 auto;padding:0 32px}
+.section{padding:96px 0}
+.section-sm{padding:64px 0}
+.text-center{text-align:center}
+.fade-up{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+.fade-up.visible{opacity:1;transform:none}
+
+/* ─── TYPOGRAPHY ─── */
+h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.2;color:var(--burg-dk)}
+h1{font-size:clamp(2.4rem,5vw,4rem);font-weight:700}
+h2{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:600}
+h3{font-size:clamp(1.3rem,2vw,1.8rem);font-weight:500}
+h4{font-size:1.1rem;font-weight:500}
+.eyebrow{font-family:'Raleway',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:block}
+.lead{font-size:1.15rem;line-height:1.8;color:var(--text-md);font-weight:400}
+p{line-height:1.8;color:var(--text-md)}
+
+/* ─── BUTTONS ─── */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;font-family:'Raleway',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:2px;transition:var(--trans);cursor:pointer}
+.btn-primary{background:var(--burg);color:var(--white)}
+.btn-primary:hover{background:var(--burg-dk);transform:translateY(-2px);box-shadow:0 8px 24px rgba(107,31,42,.3)}
+.btn-outline{border:2px solid var(--gold);color:var(--gold)}
+.btn-outline:hover{background:var(--gold);color:var(--espresso)}
+.btn-outline-white{border:2px solid rgba(255,255,255,.7);color:var(--white)}
+.btn-outline-white:hover{background:rgba(255,255,255,.15);border-color:var(--white)}
+.btn-gold{background:var(--gold);color:var(--espresso)}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px)}
+
+/* ─── PAGE SWITCHER ─── */
+.page{display:none}
+.page.active{display:block}
+
+/* ─── NAVBAR ─── */
+#navbar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:var(--nav-h);
+  display:flex;align-items:center;
+  padding:0 40px;
+  transition:background .4s ease,box-shadow .4s ease;
+}
+#navbar.scrolled{background:var(--espresso);box-shadow:0 2px 20px rgba(0,0,0,.3)}
+#navbar.solid{background:var(--espresso)}
+.nav-inner{width:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-logo img{height:52px;filter:brightness(0) invert(1)}
+.nav-links{display:flex;align-items:center;gap:8px;list-style:none}
+.nav-links a{
+  font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.85);padding:8px 14px;border-radius:2px;
+  transition:var(--trans);position:relative;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-links a::after{content:'';position:absolute;bottom:4px;left:14px;right:14px;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .3s ease;transform-origin:center}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-cta{margin-left:12px}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:8px;cursor:pointer}
+.hamburger span{display:block;width:24px;height:2px;background:var(--white);transition:var(--trans);border-radius:2px}
+.mobile-menu{
+  display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;
+  background:var(--espresso);z-index:999;flex-direction:column;
+  align-items:center;justify-content:center;gap:8px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1.3rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.85);padding:16px 32px;transition:var(--trans)}
+.mobile-menu a:hover{color:var(--gold-lt)}
+
+/* ─── HERO ─── */
+.hero{
+  position:relative;height:100vh;min-height:640px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background-image:url('https://merlovineyards.com/wp-content/uploads/2024/08/IMG_1933-1-1024x683.jpg');
+  background-size:cover;background-position:center;
+  transform:scale(1.05);transition:transform 8s ease;
+}
+.hero-bg.loaded{transform:scale(1)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(28,20,16,.75) 0%,rgba(107,31,42,.45) 50%,rgba(28,20,16,.8) 100%)}
+.hero-content{
+  position:relative;z-index:2;text-align:center;
+  padding:0 24px;max-width:900px;
+}
+.hero-content .eyebrow{color:var(--gold-lt);font-size:.75rem;letter-spacing:.3em}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.8rem,7vw,5.5rem);
+  font-weight:700;color:var(--white);
+  line-height:1.1;margin:16px 0 8px;
+  text-shadow:0 2px 20px rgba(0,0,0,.4);
+}
+.hero-title em{font-style:italic;color:var(--gold-lt)}
+.hero-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.1rem,2.5vw,1.5rem);
+  color:rgba(255,255,255,.8);
+  font-weight:300;font-style:italic;
+  margin:16px 0 40px;letter-spacing:.04em;
+}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.hero-scroll{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2;
+}
+.hero-scroll span{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,rgba(196,154,59,.8),transparent);animation:scrollPulse 2s ease infinite}
+@keyframes scrollPulse{0%,100%{opacity:.4;transform:scaleY(.8)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ─── AWARDS BAR ─── */
+.awards-bar{background:var(--burg-dk);padding:20px 0;overflow:hidden}
+.awards-track{display:flex;align-items:center;gap:56px;white-space:nowrap;animation:marquee 30s linear infinite}
+.awards-track:hover{animation-play-state:paused}
+.award-item{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.award-score{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--gold-lt)}
+.award-name{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.award-dot{width:4px;height:4px;background:var(--gold);border-radius:50%;flex-shrink:0}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─── INTRO SPLIT ─── */
+.intro-split{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:center}
+.intro-img{position:relative;overflow:hidden;aspect-ratio:4/5}
+.intro-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.intro-img:hover img{transform:scale(1.04)}
+.intro-img-accent{
+  position:absolute;bottom:-24px;right:-24px;
+  width:180px;height:180px;
+  border:3px solid var(--gold);
+  z-index:1;
+}
+.intro-text{padding:64px 72px}
+.intro-text blockquote{
+  margin:32px 0;
+  padding-left:20px;
+  border-left:3px solid var(--gold);
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.35rem;font-style:italic;
+  color:var(--burg);line-height:1.6;
+}
+.intro-text .btn{margin-top:32px}
+.intro-stats{display:flex;gap:32px;margin-top:40px;padding-top:32px;border-top:1px solid var(--cream-dk)}
+.stat{text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--burg);display:block}
+.stat-lbl{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-md)}
+
+/* ─── SECTION HEADER ─── */
+.section-header{text-align:center;margin-bottom:64px}
+.section-header h2{margin-bottom:16px}
+.section-header p{max-width:600px;margin:0 auto;font-size:1.05rem}
+.gold-divider{width:60px;height:2px;background:var(--gold);margin:20px auto}
+
+/* ─── WINES GRID ─── */
+.wines-bg{background:var(--espresso)}
+.wines-bg .section-header h2,.wines-bg .eyebrow{color:var(--white)}
+.wines-bg .section-header p{color:rgba(255,255,255,.65)}
+.wines-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2px}
+.wine-card{
+  position:relative;background:rgba(255,255,255,.04);
+  overflow:hidden;cursor:pointer;
+  transition:var(--trans);
+  border:1px solid rgba(196,154,59,.1);
+}
+.wine-card:hover{background:rgba(255,255,255,.08);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.wine-img{
+  height:260px;overflow:hidden;
+  background:linear-gradient(135deg,var(--burg-dk) 0%,#2A0E14 100%);
+  display:flex;align-items:center;justify-content:center;position:relative;
+}
+.wine-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.wine-card:hover .wine-img img{transform:scale(1.06)}
+.wine-score{
+  position:absolute;top:16px;right:16px;
+  background:var(--gold);color:var(--espresso);
+  font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;
+  padding:6px 10px;border-radius:2px;
+}
+.wine-info{padding:24px}
+.wine-info h3{font-size:1.2rem;color:var(--white);margin-bottom:6px}
+.wine-info .variety{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.wine-info p{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:20px}
+.wine-info .btn{font-size:.75rem;padding:10px 22px}
+
+/* ─── TASTING ROOM TEASER ─── */
+.tr-teaser{
+  position:relative;min-height:560px;
+  display:flex;align-items:center;
+  overflow:hidden;
+}
+.tr-teaser-bg{
+  position:absolute;inset:0;
+  background-image:url('https://merlovineyards.com/wp-content/uploads/2023/08/DSCF850812677-1024x683.jpg');
+  background-size:cover;background-position:center;
+}
+.tr-teaser-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(28,20,16,.9) 0%,rgba(28,20,16,.5) 60%,transparent 100%)}
+.tr-teaser-content{position:relative;z-index:2;max-width:560px;padding:80px 0 80px 80px}
+.tr-teaser-content h2{color:var(--white);margin-bottom:20px}
+.tr-teaser-content p{color:rgba(255,255,255,.75);margin-bottom:32px;font-size:1.05rem}
+.hours-list{list-style:none;margin-bottom:32px}
+.hours-list li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:.9rem}
+.hours-list li span:first-child{color:rgba(255,255,255,.6);font-weight:500}
+.hours-list li span:last-child{color:var(--white);font-weight:600}
+.hours-list li.today span:last-child{color:var(--gold-lt)}
+
+/* ─── CTA BANNER ─── */
+.cta-banner{background:var(--burg);padding:80px 0;text-align:center;position:relative;overflow:hidden}
+.cta-banner::before{content:'';position:absolute;top:-80px;right:-80px;width:400px;height:400px;background:rgba(255,255,255,.03);border-radius:50%}
+.cta-banner h2{color:var(--white);margin-bottom:16px}
+.cta-banner p{color:rgba(255,255,255,.75);margin-bottom:36px;font-size:1.05rem;max-width:560px;margin-left:auto;margin-right:auto}
+
+/* ─── PAGE HERO (inner pages) ─── */
+.page-hero{
+  position:relative;height:420px;
+  display:flex;align-items:flex-end;
+  padding-bottom:64px;
+  overflow:hidden;
+}
+.page-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.page-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,20,16,.9) 0%,rgba(28,20,16,.35) 100%)}
+.page-hero-content{position:relative;z-index:2;padding:0 40px}
+.page-hero-content .eyebrow{color:var(--gold-lt)}
+.page-hero-content h1{color:var(--white)}
+
+/* ─── VINEYARD PAGE ─── */
+.vineyard-intro{background:var(--cream)}
+.split-content{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.split-content.reverse{direction:rtl}
+.split-content.reverse > *{direction:ltr}
+.rich-text h2{margin-bottom:20px}
+.rich-text p{margin-bottom:20px}
+.rich-text p:last-child{margin-bottom:0}
+.valley-feature{
+  background:var(--espresso);color:var(--white);
+  padding:96px 0;position:relative;overflow:hidden;
+}
+.valley-feature::before{
+  content:'HYAMPOM';
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:'Playfair Display',serif;font-size:16vw;font-weight:700;
+  color:rgba(255,255,255,.025);white-space:nowrap;pointer-events:none;
+  line-height:1;
+}
+.valley-feature h2{color:var(--white)}
+.valley-feature p{color:rgba(255,255,255,.7)}
+.valley-feature .eyebrow{color:var(--gold-lt)}
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:64px;padding-top:64px;border-top:1px solid rgba(255,255,255,.1)}
+.stat-item{text-align:center}
+.stat-item .num{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;color:var(--gold-lt);display:block}
+.stat-item .lbl{font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.quote-pull{
+  padding:64px;background:var(--cream-dk);
+  border-left:4px solid var(--gold);
+  margin:64px 0;
+}
+.quote-pull q{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem;font-style:italic;
+  color:var(--burg);line-height:1.6;display:block;margin-bottom:16px;
+}
+.quote-pull cite{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-md)}
+
+/* ─── TASTING ROOM PAGE ─── */
+.tr-info-bar{
+  background:var(--burg);color:var(--white);
+  padding:48px 0;
+}
+.tr-info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;text-align:center}
+.tr-info-item h4{color:var(--gold-lt);font-family:'Raleway',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px}
+.tr-info-item p,.tr-info-item a{color:rgba(255,255,255,.85);font-size:.95rem;line-height:1.8}
+.tr-info-item a:hover{color:var(--gold-lt)}
+.gallery-section{background:var(--cream-dk)}
+.gallery-masonry{
+  columns:3;column-gap:16px;
+  margin-top:48px;
+}
+.gallery-masonry .g-item{
+  break-inside:avoid;margin-bottom:16px;
+  overflow:hidden;position:relative;cursor:pointer;
+  border-radius:16px;
+}
+.gallery-masonry .g-item img{
+  width:100%;display:block;
+  transition:transform .5s ease;
+  border-radius:16px;
+}
+.gallery-masonry .g-item:hover img{transform:scale(1.04)}
+.gallery-masonry .g-item::after{
+  content:'';position:absolute;inset:0;
+  background:rgba(107,31,42,0);transition:background .3s ease;
+}
+.gallery-masonry .g-item:hover::after{background:rgba(107,31,42,.2)}
+.tr-awards{background:var(--espresso);padding:80px 0}
+.award-badge{
+  display:inline-flex;flex-direction:column;align-items:center;
+  padding:32px;border:2px solid rgba(196,154,59,.3);
+  transition:var(--trans);
+}
+.award-badge:hover{border-color:var(--gold);background:rgba(196,154,59,.05)}
+.award-badge img{height:80px;margin-bottom:16px}
+.award-badge h4{color:var(--white);text-align:center;font-size:1rem}
+.award-badge p{color:rgba(255,255,255,.55);font-size:.8rem;text-align:center;margin-top:4px}
+.awards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:24px;margin-top:48px}
+
+/* ─── SHOP PAGE ─── */
+.shop-hero-bg{background-image:url('https://merlovineyards.com/wp-content/uploads/2023/04/winelineup.jpg')}
+.shop-filter{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px;justify-content:center}
+.filter-btn{
+  padding:8px 24px;border:1px solid rgba(107,31,42,.25);
+  font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-md);border-radius:30px;cursor:pointer;transition:var(--trans);
+  background:none;
+}
+.filter-btn.active,.filter-btn:hover{background:var(--burg);color:var(--white);border-color:var(--burg)}
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:32px}
+.product-card{
+  background:var(--white);border:1px solid rgba(0,0,0,.07);
+  overflow:hidden;transition:var(--trans);
+  position:relative;
+}
+.product-card:hover{box-shadow:0 20px 48px rgba(107,31,42,.15);transform:translateY(-4px)}
+.product-img{
+  height:280px;overflow:hidden;position:relative;
+  background:linear-gradient(135deg,var(--cream) 0%,var(--cream-dk) 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.product-img img{height:100%;width:100%;object-fit:cover;transition:transform .5s ease}
+.product-card:hover .product-img img{transform:scale(1.04)}
+.product-badge{
+  position:absolute;top:16px;left:16px;
+  background:var(--burg);color:var(--white);
+  font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 10px;
+}
+.product-score-badge{
+  position:absolute;top:16px;right:16px;
+  width:52px;height:52px;border-radius:50%;
+  background:var(--gold);color:var(--espresso);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.product-score-badge .pts{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;line-height:1}
+.product-score-badge .pts-lbl{font-size:.55rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;line-height:1;margin-top:2px}
+.product-info{padding:24px}
+.product-info .variety{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;display:block}
+.product-info h3{font-size:1.25rem;color:var(--burg-dk);margin-bottom:8px}
+.product-info p{font-size:.9rem;line-height:1.7;margin-bottom:20px}
+.product-footer{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--cream-dk)}
+.product-price{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--burg)}
+.wine-club-banner{
+  background:linear-gradient(135deg,var(--burg-dk) 0%,var(--burg) 100%);
+  padding:80px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;
+  margin-top:64px;
+}
+.wine-club-banner h2{color:var(--white);margin-bottom:12px}
+.wine-club-banner p{color:rgba(255,255,255,.7)}
+
+/* ─── CONTACT PAGE ─── */
+.contact-hero-bg{background-image:url('https://merlovineyards.com/wp-content/uploads/2023/08/Raymond-Merlo-scaled.jpg')}
+.contact-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
+.contact-info h3{margin-bottom:24px;color:var(--burg-dk)}
+.contact-detail{display:flex;gap:16px;margin-bottom:24px;align-items:flex-start}
+.contact-icon{
+  width:44px;height:44px;flex-shrink:0;
+  background:var(--burg);color:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  border-radius:2px;font-size:1.1rem;
+}
+.contact-detail-text h4{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;font-family:'Raleway',sans-serif}
+.contact-detail-text p,.contact-detail-text a{font-size:.95rem;color:var(--text-md);line-height:1.7}
+.contact-detail-text a:hover{color:var(--burg)}
+.hours-table{width:100%;border-collapse:collapse;margin-top:16px}
+.hours-table td{padding:6px 0;font-size:.9rem;color:var(--text-md)}
+.hours-table td:first-child{color:var(--text);font-weight:600;width:120px}
+.contact-form-wrap{background:var(--white);padding:48px;box-shadow:0 8px 32px rgba(0,0,0,.08)}
+.contact-form-wrap h3{margin-bottom:32px;color:var(--burg-dk)}
+.form-group{margin-bottom:24px}
+.form-group label{display:block;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-md);margin-bottom:8px}
+.form-group input,.form-group textarea,.form-group select{
+  width:100%;padding:14px 16px;
+  border:1px solid rgba(0,0,0,.15);background:var(--cream);
+  font-family:'Raleway',sans-serif;font-size:.95rem;color:var(--text);
+  transition:border-color .3s ease;border-radius:2px;
+}
+.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--burg);background:var(--white)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.map-section{padding:0}
+.map-section iframe{width:100%;height:420px;border:none;display:block;filter:grayscale(.2) contrast(1.05)}
+
+/* ─── FOOTER ─── */
+footer{background:var(--espresso);padding:80px 0 40px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:64px}
+.footer-brand .logo img{height:56px;filter:brightness(0) invert(1);margin-bottom:20px}
+.footer-brand p{color:rgba(255,255,255,.55);font-size:.9rem;line-height:1.8;max-width:280px}
+.footer-social{display:flex;gap:12px;margin-top:24px}
+.footer-social a{
+  width:36px;height:36px;background:rgba(255,255,255,.08);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.7);font-size:.8rem;transition:var(--trans);
+}
+.footer-social a:hover{background:var(--gold);color:var(--espresso)}
+.footer-col h4{color:var(--white);font-family:'Raleway',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:20px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:10px}
+.footer-col ul li a{color:rgba(255,255,255,.55);font-size:.9rem;transition:color .3s ease}
+.footer-col ul li a:hover{color:var(--gold-lt)}
+.footer-bottom{
+  padding-top:32px;border-top:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+}
+.footer-bottom p{color:rgba(255,255,255,.35);font-size:.82rem}
+.footer-bottom a{color:rgba(255,255,255,.35);font-size:.82rem}
+.footer-bottom a:hover{color:rgba(255,255,255,.7)}
+.age-disclaimer{
+  background:rgba(255,255,255,.04);padding:16px;text-align:center;
+  color:rgba(255,255,255,.4);font-size:.78rem;margin-top:24px;border-radius:2px;
+}
+
+/* ─── LIGHTBOX ─── */
+.lightbox{
+  display:none;position:fixed;inset:0;z-index:2000;
+  background:rgba(0,0,0,.95);
+  align-items:center;justify-content:center;padding:32px;
+}
+.lightbox.open{display:flex}
+.lightbox img{max-width:90vw;max-height:90vh;object-fit:contain}
+.lightbox-close{
+  position:absolute;top:24px;right:32px;
+  color:rgba(255,255,255,.7);font-size:2rem;cursor:pointer;
+  transition:color .3s ease;background:none;border:none;line-height:1;
+}
+.lightbox-close:hover{color:var(--white)}
+
+/* ─── NEWSLETTER ─── */
+.newsletter{background:var(--cream-dk);padding:80px 0}
+.newsletter-inner{
+  max-width:560px;margin:0 auto;text-align:center;
+}
+.newsletter-inner h2{margin-bottom:12px}
+.newsletter-inner p{margin-bottom:32px}
+.newsletter-form{display:flex;gap:0}
+.newsletter-form input{
+  flex:1;padding:16px 20px;border:1px solid rgba(0,0,0,.15);border-right:none;
+  font-family:'Raleway',sans-serif;font-size:.95rem;background:var(--white);
+  border-radius:2px 0 0 2px;
+}
+.newsletter-form input:focus{outline:none;border-color:var(--burg)}
+.newsletter-form .btn{border-radius:0 2px 2px 0;padding:16px 28px}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px){
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .intro-split{grid-template-columns:1fr}
+  .intro-text{padding:48px 40px}
+  .split-content{grid-template-columns:1fr;gap:40px}
+  .split-content.reverse{direction:ltr}
+  .wine-club-banner{grid-template-columns:1fr;padding:48px}
+  .contact-layout{grid-template-columns:1fr}
+  .stat-row{grid-template-columns:repeat(2,1fr)}
+  .tr-info-grid{grid-template-columns:1fr}
+  .gallery-masonry{columns:2}
+}
+@media(max-width:768px){
+  :root{--nav-h:68px}
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .hero-btns{flex-direction:column;align-items:center}
+  .awards-bar{display:none}
+  .tr-teaser-content{padding:48px 24px}
+  .gallery-masonry{columns:2}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .newsletter-form{flex-direction:column}
+  .newsletter-form input{border-right:1px solid rgba(0,0,0,.15);border-bottom:none;border-radius:2px 2px 0 0}
+  .newsletter-form .btn{border-radius:0 0 2px 2px}
+  .quote-pull{padding:32px}
+  .stat-row{grid-template-columns:repeat(2,1fr);gap:24px}
+  .form-row{grid-template-columns:1fr}
+  .shop-grid{grid-template-columns:1fr}
+  .wines-grid{grid-template-columns:1fr}
+  .page-hero{height:300px;padding-bottom:40px}
+  .awards-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+  .container{padding:0 20px}
+  .section{padding:64px 0}
+  .gallery-masonry{columns:1}
+  .intro-text{padding:40px 20px}
+  .tr-info-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav id="navbar" class="solid">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#" onclick="showPage('home');return false">
+      <img src="https://merlovineyards.com/wp-content/uploads/2023/03/Logo-2024.png" alt="Merlo Family Estate Vineyards">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" class="active" data-page="home" onclick="showPage('home');return false">Home</a></li>
+      <li><a href="#" data-page="vineyard" onclick="showPage('vineyard');return false">Vineyard</a></li>
+      <li><a href="#" data-page="tasting" onclick="showPage('tasting');return false">Tasting Room</a></li>
+      <li><a href="#" data-page="shop" onclick="showPage('shop');return false">Shop Wines</a></li>
+      <li><a href="#" data-page="contact" onclick="showPage('contact');return false">Contact</a></li>
+    </ul>
+    <a href="https://merlovineyards.orderport.net/wine-club/" target="_blank" class="btn btn-outline nav-cta" style="font-size:.72rem;padding:10px 20px">Wine Club</a>
+    <div class="hamburger" onclick="toggleMobile()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" onclick="showPage('home');toggleMobile();return false">Home</a>
+  <a href="#" onclick="showPage('vineyard');toggleMobile();return false">Vineyard</a>
+  <a href="#" onclick="showPage('tasting');toggleMobile();return false">Tasting Room</a>
+  <a href="#" onclick="showPage('shop');toggleMobile();return false">Shop Wines</a>
+  <a href="#" onclick="showPage('contact');toggleMobile();return false">Contact</a>
+  <a href="https://merlovineyards.orderport.net/wine-club/" target="_blank" style="color:var(--gold-lt)">Join Wine Club</a>
+</div>
+
+<!-- ═══════════════════════════════════
+     PAGE: HOME
+═══════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="eyebrow">Hyampom Valley · Northern California</span>
+      <h1 class="hero-title">An <em>Expression</em><br>of the Land</h1>
+      <p class="hero-sub">Award-winning estate wines from California's most remote and pristine wine valley</p>
+      <div class="hero-btns">
+        <button class="btn btn-primary" onclick="showPage('shop')">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Shop Our Wines
+        </button>
+        <button class="btn btn-outline-white" onclick="showPage('tasting')">Visit Tasting Room</button>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Awards Bar -->
+  <div class="awards-bar">
+    <div class="awards-track" id="awardsTrack">
+      <!-- duplicated for infinite scroll -->
+      <div class="award-item"><span class="award-score">97</span><div><div class="award-name">Estate Syrah</div></div></div>
+      <div class="award-dot"></div>
+      <div class="award-item"><span class="award-score">95</span><div><div class="award-name">Estate Zinfandel</div></div></div>
+      <div class="award-dot"></div>
+      <div class="award-item"><span class="award-score">93</span><div><div class="award-name">Blackbird Blend</div></div></div>
+      <div class="award-dot"></div>
+      <div class="award-item"><span class="award-score">90</span><div><div class="award-name">Estate Pinot Noir</div></div></div>
+      <div class="award-dot"></div>
+      <div class="award-item"><span class="award-score">90</span><div><div class="award-name">Estate Chardonnay</div></div></div>
+      <div class="award-dot"></div>
+      <div class="award-item" style="margin-right:32px"><span style="font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)">🥇 Gold — SF Chronicle Wine Competition</span></div>
+      <!-- duplicate -->
+      <div class="award-item"><span class="award-score">97</span><div><div class="award-name">Estate Syrah</div></div></div>
+      <div class="award-dot"></div>
+      <div class="award-item"><span class="award-score">95</span><div><div class="award-name">Estate Zinfandel</div></div></div>
+      <div class="award-dot"></div>
+      <div class="award-item"><span class="award-score">93</span><div><div class="award-name">Blackbird Blend</div></div></div>
+      <div class="award-dot"></div>
+      <div class="award-item"><span class="award-score">90</span><div><div class="award-name">Estate Pinot Noir</div></div></div>
+      <div class="award-dot"></div>
+      <div class="award-item"><span class="award-score">90</span><div><div class="award-name">Estate Chardonnay</div></div></div>
+      <div class="award-dot"></div>
+      <div class="award-item"><span style="font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)">🥇 Gold — SF Chronicle Wine Competition</span></div>
+    </div>
+  </div>
+
+  <!-- Intro Split -->
+  <section class="section" style="background:var(--cream);padding:0">
+    <div class="intro-split">
+      <div class="intro-img">
+        <img src="https://merlovineyards.com/wp-content/uploads/2023/03/homepage01-1024x1024.jpg" alt="Merlo Family Vineyards Estate" loading="lazy">
+        <div class="intro-img-accent"></div>
+      </div>
+      <div class="intro-text fade-up">
+        <span class="eyebrow">Our Story</span>
+        <h2>Merlo Family<br>Estate Vineyards</h2>
+        <blockquote>"The fruit expresses such a strong sense of place. I want the unique characteristics of Hyampom Valley fruit to shine through, so that each wine is an elegant expression of the land."</blockquote>
+        <p class="lead">Tucked away in the far reaches of rugged Northern California lies Hyampom Valley — one of California's most remote and pristine wine regions. Our wines are naturally big and bold, yet refined and beautiful, deeply complex without relying on high alcohol or overripe flavors.</p>
+        <div class="intro-stats">
+          <div class="stat"><span class="stat-num">45+</span><span class="stat-lbl">Acres Planted</span></div>
+          <div class="stat"><span class="stat-num">1,250</span><span class="stat-lbl">Feet Elevation</span></div>
+          <div class="stat"><span class="stat-num">50°</span><span class="stat-lbl">Daily Temp Swing</span></div>
+        </div>
+        <button class="btn btn-primary" onclick="showPage('vineyard')">Explore the Vineyard</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Wines -->
+  <section class="section wines-bg">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="eyebrow">Award-Winning Wines</span>
+        <h2 style="color:var(--white)">Our Wines</h2>
+        <div class="gold-divider"></div>
+        <p>Unlike most California wines, Merlo Family Vineyards wines are deep and complex yet not high in alcohol. The red wines are rich, dark and bold with very smooth tannin structure. The whites display bright, vibrant flavors with crisp natural acidity.</p>
+      </div>
+      <div class="wines-grid">
+        <div class="wine-card fade-up">
+          <div class="wine-img">
+            <img src="https://merlovineyards.com/wp-content/uploads/2023/03/products4_1.jpg" alt="Estate Syrah" loading="lazy">
+            <span class="wine-score">97 PTS</span>
+          </div>
+          <div class="wine-info">
+            <span class="variety">Red Wine · Estate</span>
+            <h3>MFV Estate Syrah</h3>
+            <p>Rich, dark and bold with extraordinary depth. Full bodied with complex layers of dark fruit, pepper and earthy minerality.</p>
+            <button class="btn btn-outline" onclick="showPage('shop')" style="color:var(--gold-lt);border-color:rgba(196,154,59,.4)">View Details</button>
+          </div>
+        </div>
+        <div class="wine-card fade-up" style="transition-delay:.1s">
+          <div class="wine-img">
+            <img src="https://merlovineyards.com/wp-content/uploads/2023/04/winelineup.jpg" alt="Blackbird Blend" loading="lazy">
+            <span class="wine-score">93 PTS</span>
+          </div>
+          <div class="wine-info">
+            <span class="variety">Red Blend · Estate</span>
+            <h3>MFV Blackbird Blend</h3>
+            <p>Gold Medal — SF International Wine Competition. Named for "Merlo," the Italian word for Blackbird. Boldly structured with elegant balance.</p>
+            <button class="btn btn-outline" onclick="showPage('shop')" style="color:var(--gold-lt);border-color:rgba(196,154,59,.4)">View Details</button>
+          </div>
+        </div>
+        <div class="wine-card fade-up" style="transition-delay:.2s">
+          <div class="wine-img">
+            <img src="https://merlovineyards.com/wp-content/uploads/2023/03/chocolatewine.jpg" alt="Estate Chardonnay" loading="lazy">
+            <span class="wine-score">90 PTS</span>
+          </div>
+          <div class="wine-info">
+            <span class="variety">White Wine · Estate</span>
+            <h3>MFV Estate Chardonnay</h3>
+            <p>Bright, vibrant and crisp with naturally high acidity. A true expression of Hyampom Valley's cool, concentrated growing conditions.</p>
+            <button class="btn btn-outline" onclick="showPage('shop')" style="color:var(--gold-lt);border-color:rgba(196,154,59,.4)">View Details</button>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:48px">
+        <button class="btn btn-gold" onclick="showPage('shop')">View All Wines</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tasting Room Teaser -->
+  <div class="tr-teaser">
+    <div class="tr-teaser-bg"></div>
+    <div class="tr-teaser-overlay"></div>
+    <div class="tr-teaser-content fade-up">
+      <span class="eyebrow" style="color:var(--gold-lt)">Historic Old Town Folsom</span>
+      <h2>Visit Our Tasting Room</h2>
+      <p>Located in the heart of Historic Old Towne Folsom, our tasting room is your gateway to Hyampom Valley. Taste flights, explore bottles, and join the Wine Club.</p>
+      <ul class="hours-list">
+        <li><span>Wednesday – Thursday</span><span>12 – 6 pm</span></li>
+        <li><span>Friday – Saturday</span><span>12 – 8 pm</span></li>
+        <li class="today"><span>Sunday</span><span>12 – 6 pm</span></li>
+      </ul>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="showPage('tasting')">See Tasting Room</button>
+        <a href="tel:916-817-1962" class="btn btn-outline-white">Call 916-817-1962</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <div class="container">
+      <div class="newsletter-inner fade-up">
+        <span class="eyebrow">Stay Connected</span>
+        <h2>Join Our Newsletter</h2>
+        <p>Be the first to know about new releases, special events, and exclusive offers at Merlo Family Estate Vineyards.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Your email address">
+          <a href="https://merlovineyards.orderport.net/newsletter" target="_blank" class="btn btn-primary">Subscribe</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-home -->
+
+<!-- ═══════════════════════════════════
+     PAGE: VINEYARD
+═══════════════════════════════════ -->
+<div id="page-vineyard" class="page">
+
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('https://merlovineyards.com/wp-content/uploads/2023/03/vineyard08-1024x770.jpg')"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content container">
+      <span class="eyebrow">Hyampom Valley · Trinity County</span>
+      <h1>Our Estate Vineyards</h1>
+    </div>
+  </div>
+
+  <!-- Estate Intro -->
+  <section class="section" style="background:var(--cream)">
+    <div class="container">
+      <div class="split-content">
+        <div class="rich-text fade-up">
+          <span class="eyebrow">Merlo Family Estate</span>
+          <h2>Where Quality Begins in the Vineyard</h2>
+          <p>Welcome to Merlo Family Estate Vineyards, a family-owned gem where authenticity and excellence define our winemaking journey. Situated in the heart of Hyampom Valley, California, our vineyard thrives in a unique microclimate that naturally yields lower quantities but exceptionally high-quality fruit.</p>
+          <p>Over 45 acres are currently planted with Chardonnay, Pinot Noir, Zinfandel, and Syrah — quality clones on terroir and site-specific rootstocks. At an elevation of 1,250 feet on the banks of the South Fork of the Trinity River, these are among the most unique vineyard sites in California.</p>
+          <p>From hand-harvesting to expert fermentation and aging, every aspect of our winemaking process is tailored to preserve the integrity of our fruit and showcase its remarkable quality.</p>
+        </div>
+        <div class="fade-up" style="transition-delay:.15s">
+          <img src="https://merlovineyards.com/wp-content/uploads/2018/05/vineyard-rows.jpg" alt="Vineyard Rows at Merlo Family Estate" style="width:100%;height:480px;object-fit:cover;border-radius:20px" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Pull -->
+  <div class="container" style="padding-top:0;padding-bottom:32px">
+    <div class="quote-pull fade-up">
+      <q>We are committed to making wines that are true expressions of the varietal fruit from which they are made. The only way to truly make great wine is to grow great fruit.</q>
+      <cite>— Ray Merlo, Founder &amp; Winemaker</cite>
+    </div>
+  </div>
+
+  <!-- Hyampom Valley Feature -->
+  <div class="valley-feature">
+    <div class="container">
+      <div class="split-content">
+        <div class="fade-up">
+          <span class="eyebrow">The Growing Region</span>
+          <h2>Hyampom Valley</h2>
+          <p style="color:rgba(255,255,255,.7);margin-bottom:20px">Tucked away in the far reaches of Northern California lies Hyampom Valley — a remote river valley hidden amongst towering 8,000 ft. intercoastal mountains of Southern Trinity County. <em>Hyampom</em>, the Wintu Indian phrase for "plentiful valley," is a fitting name for one of the most remote and perhaps most ideal winemaking regions in California.</p>
+          <p style="color:rgba(255,255,255,.7);margin-bottom:20px">Located roughly 100 miles north of Sonoma and Napa Counties, Hyampom Valley's growing season runs three to four weeks later than wine country — allowing for much slower ripening, increasing hang time and creating full concentrated flavors without over-ripening or depleting natural acids.</p>
+          <p style="color:rgba(255,255,255,.7)">Daily temperature fluctuations of up to 50°F create a rich and complex tannin structure that gives the wines strong backbone. Each night, cool moist air flows down from the majestic forested mountains, making this valley nature's perfect wine incubator.</p>
+        </div>
+        <div class="fade-up" style="transition-delay:.15s">
+          <img src="https://merlovineyards.com/wp-content/uploads/2024/08/IMG_1933-1-1024x683.jpg" alt="Hyampom Valley California" style="width:100%;height:440px;object-fit:cover;border-radius:20px" loading="lazy">
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-item fade-up"><span class="num">1,250<span style="font-size:1.6rem">ft</span></span><span class="lbl">Elevation</span></div>
+        <div class="stat-item fade-up" style="transition-delay:.1s"><span class="num">45+</span><span class="lbl">Acres Planted</span></div>
+        <div class="stat-item fade-up" style="transition-delay:.2s"><span class="num">50°F</span><span class="lbl">Daily Temp Swing</span></div>
+        <div class="stat-item fade-up" style="transition-delay:.3s"><span class="num">4</span><span class="lbl">Estate Varietals</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Winemaking -->
+  <section class="section" style="background:var(--cream-dk)">
+    <div class="container">
+      <div class="split-content reverse">
+        <div class="fade-up">
+          <img src="https://merlovineyards.com/wp-content/uploads/2023/03/products4_1.jpg" alt="Winemaking at Merlo Family Vineyards" style="width:100%;height:480px;object-fit:cover;border-radius:20px" loading="lazy">
+        </div>
+        <div class="rich-text fade-up" style="transition-delay:.15s">
+          <span class="eyebrow">Winemaking Philosophy</span>
+          <h2>Minimalist Craft,<br>Maximum Expression</h2>
+          <p>Merlo Family Vineyards was founded on the concept that quality wine is grown in the vineyard. A minimalist approach is taken in the cellar, allowing wines to clearly reflect the varietal character and distinct terroir of Hyampom Valley.</p>
+          <p>The unique growing season produces exceptional fruit with high natural acidity, resulting in structured wines with deep, elegant, and fresh fruit flavors. Two shoot and fruit thinning passes are made each year to promote quality — the vineyard is thinned prior to veraison to adjust the overall crop load.</p>
+          <p>Cover-cropping builds organic matter and nutrient cycling, and sustainable farming practices are used throughout. Production is kept to a meticulous 2½–4 tons per acre to ensure concentrated, flavorful fruit in every bottle.</p>
+          <button class="btn btn-primary" onclick="showPage('shop')" style="margin-top:24px">Explore Our Wines</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Soil Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="eyebrow">Geology &amp; Terroir</span>
+        <h2>The Soil Beneath Our Vines</h2>
+        <div class="gold-divider"></div>
+        <p>The soils of Merlo Family Vineyards are of three distinctly different origins, each contributing to the complexity and character of our wines.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:32px">
+        <div class="fade-up" style="padding:36px;background:var(--cream-dk);border-top:3px solid var(--gold)">
+          <h3 style="margin-bottom:12px;font-size:1.15rem">Alluvial Flood Soils</h3>
+          <p style="font-size:.92rem">Young alluvial infill from the 1964 flood deposited over 30 feet of new material — mixtures of rock, gravel, and sand with decomposed granite silts. Approximately 70% of the vineyard lies on these freely drained flood soils.</p>
+        </div>
+        <div class="fade-up" style="padding:36px;background:var(--cream-dk);border-top:3px solid var(--gold);transition-delay:.1s">
+          <h3 style="margin-bottom:12px;font-size:1.15rem">Native Clay Shale</h3>
+          <p style="font-size:.92rem">Heavy native clay from shale origins, uniformly deposited from the shale cliffs behind the vineyard. Combined with coastal serpentines, ancient shales, unusual metamorphic rock, and decomposing granites.</p>
+        </div>
+        <div class="fade-up" style="padding:36px;background:var(--cream-dk);border-top:3px solid var(--gold);transition-delay:.2s">
+          <h3 style="margin-bottom:12px;font-size:1.15rem">Carboniferous Shale</h3>
+          <p style="font-size:.92rem">A lead of carboniferous shale crosses the valley near the middle. Mineral soils and large aggregate carried by local streams to the valley floor result in a remarkable cornucopia of soil variability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-vineyard -->
+
+<!-- ═══════════════════════════════════
+     PAGE: TASTING ROOM
+═══════════════════════════════════ -->
+<div id="page-tasting" class="page">
+
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('https://merlovineyards.com/wp-content/uploads/2023/08/DSCF850812677-1024x683.jpg')"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content container">
+      <span class="eyebrow">Historic Old Town Folsom</span>
+      <h1>Wine Tasting Room</h1>
+    </div>
+  </div>
+
+  <!-- Info Bar -->
+  <div class="tr-info-bar">
+    <div class="container">
+      <div class="tr-info-grid">
+        <div class="tr-info-item">
+          <h4>📍 Location</h4>
+          <p>815 Sutter Street, Suite G<br>Folsom, CA 95630</p>
+          <a href="https://goo.gl/maps/qRdixYoxtguHD4BW8" target="_blank" style="font-size:.82rem;color:var(--gold-lt);font-weight:600;letter-spacing:.05em">Get Directions →</a>
+        </div>
+        <div class="tr-info-item">
+          <h4>🕐 Hours</h4>
+          <p>Wed – Thu: 12 – 6 pm<br>Fri – Sat: 12 – 8 pm<br>Sun: 12 – 6 pm</p>
+        </div>
+        <div class="tr-info-item">
+          <h4>📞 Reservations</h4>
+          <p><a href="tel:916-817-1962">916-817-1962</a><br><a href="mailto:merlovineyards@gmail.com">merlovineyards@gmail.com</a></p>
+          <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-top:6px">Groups &amp; private events by appointment</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intro -->
+  <section class="section" style="background:var(--cream)">
+    <div class="container">
+      <div class="split-content">
+        <div class="rich-text fade-up">
+          <span class="eyebrow">Come Visit Us</span>
+          <h2>One of California's Best Tasting Rooms</h2>
+          <p>The Merlo Family Vineyards Tasting Room is located in the heart of Historic Old Towne Folsom, CA. Experience flights of our wines produced from California's northernmost AVA — Trinity County — or order your favorite by the glass.</p>
+          <p>We're thrilled to be the recipient of the prestigious <strong>2024 Recommended Award from Restaurant Guru</strong>, recognizing excellence in the wine and hospitality experience we provide.</p>
+          <p>Group tastings and after-hours events can be scheduled in advance. Our newly remodeled tasting room features a warm, inviting atmosphere and a brand-new VIP space designed for relaxing and enjoying exceptional wine with friends.</p>
+          <div style="display:flex;gap:12px;margin-top:32px;flex-wrap:wrap">
+            <a href="tel:916-817-1962" class="btn btn-primary">Call to Reserve</a>
+            <a href="https://merlovineyards.orderport.net/wine-club/" target="_blank" class="btn btn-outline">Join Wine Club</a>
+          </div>
+        </div>
+        <div class="fade-up" style="transition-delay:.15s">
+          <img src="https://merlovineyards.com/wp-content/uploads/2026/04/merlo-vineyards-tasting-room-2026.webp" alt="Merlo Tasting Room Interior" style="width:100%;height:460px;object-fit:cover;border-radius:20px" loading="lazy"
+            onerror="this.src='https://merlovineyards.com/wp-content/uploads/2023/08/DSCF843112741-1-scaled.jpg'">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="section gallery-section">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="eyebrow">The Tasting Room Experience</span>
+        <h2>Gallery</h2>
+        <div class="gold-divider"></div>
+      </div>
+      <div class="gallery-masonry">
+        <div class="g-item" onclick="openLightbox(this)">
+          <img src="https://merlovineyards.com/wp-content/uploads/2023/04/reddoor.jpg" alt="Tasting Room Red Door" loading="lazy">
+        </div>
+        <div class="g-item" onclick="openLightbox(this)">
+          <img src="https://merlovineyards.com/wp-content/uploads/2023/04/taste1.jpg" alt="Wine Tasting" loading="lazy">
+        </div>
+        <div class="g-item" onclick="openLightbox(this)">
+          <img src="https://merlovineyards.com/wp-content/uploads/2026/04/merlo-vineyards-tasting-room-welcome.webp" alt="Welcome to Tasting Room" loading="lazy"
+            onerror="this.src='https://merlovineyards.com/wp-content/uploads/2023/08/DSCF849012678-scaled.jpg'">
+        </div>
+        <div class="g-item" onclick="openLightbox(this)">
+          <img src="https://merlovineyards.com/wp-content/uploads/2023/04/winelineup.jpg" alt="Wine Lineup" loading="lazy">
+        </div>
+        <div class="g-item" onclick="openLightbox(this)">
+          <img src="https://merlovineyards.com/wp-content/uploads/2026/04/merlo-vineyards-tasting-room-fun.webp" alt="Tasting Room Fun" loading="lazy"
+            onerror="this.src='https://merlovineyards.com/wp-content/uploads/2024/08/thumbnail_IMG_9181.jpg'">
+        </div>
+        <div class="g-item" onclick="openLightbox(this)">
+          <img src="https://merlovineyards.com/wp-content/uploads/2024/08/Wine-Event-Merlo-Family-Vineyards-Copy.jpg" alt="Wine Event" loading="lazy">
+        </div>
+        <div class="g-item" onclick="openLightbox(this)">
+          <img src="https://merlovineyards.com/wp-content/uploads/2024/08/Rymond-Merlo-Jr-Merlo-Family-Vineyards-scaled.jpg" alt="Raymond Merlo Jr" loading="lazy">
+        </div>
+        <div class="g-item" onclick="openLightbox(this)">
+          <img src="https://merlovineyards.com/wp-content/uploads/2026/04/merlo-vineyards-tasting-room-view.webp" alt="Tasting Room View" loading="lazy"
+            onerror="this.src='https://merlovineyards.com/wp-content/uploads/2024/08/thumbnail_IMG_9183.jpg'">
+        </div>
+        <div class="g-item" onclick="openLightbox(this)">
+          <img src="https://merlovineyards.com/wp-content/uploads/2023/03/chocolatewine.jpg" alt="Chocolate and Wine Pairing" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards -->
+  <div class="tr-awards">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="eyebrow">Recognition &amp; Awards</span>
+        <h2 style="color:var(--white)">Award-Winning Excellence</h2>
+        <div class="gold-divider"></div>
+        <p style="color:rgba(255,255,255,.6)">Our wines and tasting room have earned recognition from some of the most prestigious competitions and guides in the wine world.</p>
+      </div>
+      <div class="awards-grid">
+        <div class="award-badge fade-up">
+          <img src="https://merlovineyards.com/wp-content/uploads/2023/03/awardmerlowineyards-removebg-preview.png" alt="Merlo Vineyards Award" loading="lazy" style="filter:brightness(1.2)">
+          <h4>2024 Award</h4>
+          <p>Tasting Room Excellence</p>
+        </div>
+        <div class="award-badge fade-up" style="transition-delay:.1s">
+          <div style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--gold-lt);margin-bottom:16px">🥇</div>
+          <h4>Gold Medal</h4>
+          <p>Blackbird Blend · SF Chronicle Wine Competition</p>
+        </div>
+        <div class="award-badge fade-up" style="transition-delay:.2s">
+          <div style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--gold-lt);margin-bottom:16px">🥇</div>
+          <h4>Gold Medal</h4>
+          <p>Blackbird Blend · SF International Wine Competition</p>
+        </div>
+        <div class="award-badge fade-up" style="transition-delay:.3s">
+          <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold-lt);margin-bottom:16px;font-family:'Playfair Display',serif">97 pts</div>
+          <h4>Estate Syrah</h4>
+          <p>Critically acclaimed · Highest rated wine</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Virtual Tour CTA -->
+  <section class="section-sm" style="background:var(--cream);text-align:center">
+    <div class="container">
+      <span class="eyebrow">Explore Virtually</span>
+      <h2 style="margin-bottom:16px">Take a 3D Virtual Tour</h2>
+      <p style="max-width:520px;margin:0 auto 32px">Can't visit in person? Explore our tasting room virtually with our interactive 3D tour — drag to look around, click to walk through.</p>
+      <a href="https://goo.gl/maps/mSgCNneJ13rLU3nS9" target="_blank" class="btn btn-primary">Launch Virtual Tour</a>
+    </div>
+  </section>
+
+</div><!-- /page-tasting -->
+
+<!-- ═══════════════════════════════════
+     PAGE: SHOP / WINES
+═══════════════════════════════════ -->
+<div id="page-shop" class="page">
+
+  <div class="page-hero">
+    <div class="page-hero-bg shop-hero-bg"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content container">
+      <span class="eyebrow">Estate Wines · Hyampom Valley</span>
+      <h1>Our Wines</h1>
+    </div>
+  </div>
+
+  <section class="section" style="background:var(--cream)">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="eyebrow">The Collection</span>
+        <h2>Award-Winning Estate Wines</h2>
+        <div class="gold-divider"></div>
+        <p>Each wine is a true expression of Hyampom Valley's unique terroir — bold, complex, naturally structured, and refined. Every bottle reflects our minimalist approach: let the fruit speak.</p>
+      </div>
+
+      <div class="shop-filter fade-up">
+        <button class="filter-btn active" data-filter="all">All Wines</button>
+        <button class="filter-btn" data-filter="red">Red Wines</button>
+        <button class="filter-btn" data-filter="white">White Wines</button>
+        <button class="filter-btn" data-filter="special">Special Wines</button>
+      </div>
+
+      <div class="shop-grid">
+
+        <div class="product-card fade-up" data-type="red">
+          <div class="product-img">
+            <img src="https://merlovineyards.com/wp-content/uploads/2023/03/products4_1.jpg" alt="MFV Estate Syrah" loading="lazy">
+            <span class="product-badge">Best Seller</span>
+            <div class="product-score-badge"><span class="pts">97</span><span class="pts-lbl">pts</span></div>
+          </div>
+          <div class="product-info">
+            <span class="variety">Estate Syrah · Red Wine</span>
+            <h3>MFV Estate Syrah</h3>
+            <p>Our flagship red. Rich, dark, and powerful with extraordinary depth. Complex layers of dark berries, cracked pepper, earthy minerality, and smooth, structured tannins — a true reflection of Hyampom terroir.</p>
+            <div class="product-footer">
+              <span class="product-price">Shop Now</span>
+              <a href="https://merlovineyards.orderport.net/wines/All-Wines" target="_blank" class="btn btn-primary" style="padding:10px 20px;font-size:.75rem">Order →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card fade-up" data-type="red" style="transition-delay:.08s">
+          <div class="product-img">
+            <img src="https://merlovineyards.com/wp-content/uploads/2023/04/winelineup.jpg" alt="MFV Estate Zinfandel" loading="lazy">
+            <div class="product-score-badge"><span class="pts">95</span><span class="pts-lbl">pts</span></div>
+          </div>
+          <div class="product-info">
+            <span class="variety">Estate Zinfandel · Red Wine</span>
+            <h3>MFV Estate Zinfandel</h3>
+            <p>A Zinfandel unlike any you've tasted. Deep, bold, and elegant — the cool Hyampom nights preserve fresh acidity and create a structured, layered wine with bold dark fruit and spice.</p>
+            <div class="product-footer">
+              <span class="product-price">Shop Now</span>
+              <a href="https://merlovineyards.orderport.net/wines/All-Wines" target="_blank" class="btn btn-primary" style="padding:10px 20px;font-size:.75rem">Order →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card fade-up" data-type="red" style="transition-delay:.16s">
+          <div class="product-img">
+            <img src="https://merlovineyards.com/wp-content/uploads/2024/08/Wine-Event-Merlo-Family-Vineyards-Copy.jpg" alt="MFV Blackbird Blend" loading="lazy">
+            <span class="product-badge">Gold Medal 🥇</span>
+            <div class="product-score-badge"><span class="pts">93</span><span class="pts-lbl">pts</span></div>
+          </div>
+          <div class="product-info">
+            <span class="variety">Red Blend · Estate</span>
+            <h3>MFV Blackbird Blend</h3>
+            <p>Named for <em>Merlo</em> — Italian for "Blackbird." Gold Medal winner at both the SF Chronicle and SF International Wine Competitions. Boldly structured with elegant balance and silky tannins.</p>
+            <div class="product-footer">
+              <span class="product-price">Shop Now</span>
+              <a href="https://merlovineyards.orderport.net/wines/All-Wines" target="_blank" class="btn btn-primary" style="padding:10px 20px;font-size:.75rem">Order →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card fade-up" data-type="red" style="transition-delay:.24s">
+          <div class="product-img">
+            <img src="https://merlovineyards.com/wp-content/uploads/2023/08/DSCF843112741-1-scaled.jpg" alt="MFV Estate Pinot Noir" loading="lazy">
+            <div class="product-score-badge"><span class="pts">90</span><span class="pts-lbl">pts</span></div>
+          </div>
+          <div class="product-info">
+            <span class="variety">Estate Pinot Noir · Red Wine</span>
+            <h3>MFV Estate Pinot Noir</h3>
+            <p>An elegant, expressive Pinot Noir with bright red fruit, silky texture, and remarkable freshness. Hyampom Valley's cool nights and high elevation create a truly refined expression of this noble grape.</p>
+            <div class="product-footer">
+              <span class="product-price">Shop Now</span>
+              <a href="https://merlovineyards.orderport.net/wines/All-Wines" target="_blank" class="btn btn-primary" style="padding:10px 20px;font-size:.75rem">Order →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card fade-up" data-type="white" style="transition-delay:.32s">
+          <div class="product-img">
+            <img src="https://merlovineyards.com/wp-content/uploads/2023/03/chocolatewine.jpg" alt="MFV Estate Chardonnay" loading="lazy">
+            <div class="product-score-badge"><span class="pts">90</span><span class="pts-lbl">pts</span></div>
+          </div>
+          <div class="product-info">
+            <span class="variety">Estate Chardonnay · White Wine</span>
+            <h3>MFV Estate Chardonnay</h3>
+            <p>Bright, vibrant, and lively. Naturally high acidity from Hyampom Valley's cool growing season results in a fresh, concentrated Chardonnay with crisp citrus and stone fruit character.</p>
+            <div class="product-footer">
+              <span class="product-price">Shop Now</span>
+              <a href="https://merlovineyards.orderport.net/wines/All-Wines" target="_blank" class="btn btn-primary" style="padding:10px 20px;font-size:.75rem">Order →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card fade-up" data-type="special" style="transition-delay:.4s">
+          <div class="product-img">
+            <img src="https://merlovineyards.com/wp-content/uploads/2026/04/merlo-vineyards-mugs.webp" alt="MFV Port Wine" loading="lazy"
+              onerror="this.src='https://merlovineyards.com/wp-content/uploads/2024/08/thumbnail_IMG_9184.jpg'">
+            <span class="product-badge">Limited</span>
+          </div>
+          <div class="product-info">
+            <span class="variety">Estate Port · Dessert Wine</span>
+            <h3>MFV Estate Port</h3>
+            <p>A luscious, rich Port-style wine from our estate fruit. Richly concentrated with dried fruit, chocolate, and warm spice notes. Perfect for slow sipping or pairing with dessert.</p>
+            <div class="product-footer">
+              <span class="product-price">Shop Now</span>
+              <a href="https://merlovineyards.orderport.net/wines/All-Wines" target="_blank" class="btn btn-primary" style="padding:10px 20px;font-size:.75rem">Order →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Wine Club Banner -->
+      <div class="wine-club-banner fade-up">
+        <div>
+          <span class="eyebrow" style="color:var(--gold-lt)">Members Only</span>
+          <h2 style="color:var(--white)">Join the Merlo Wine Club</h2>
+          <p>Get exclusive access to limited releases, special pricing, and priority invitations to tasting events. Club members save 15–20% on all purchases.</p>
+        </div>
+        <div>
+          <a href="https://merlovineyards.orderport.net/wine-club/" target="_blank" class="btn btn-gold">Become a Member</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div><!-- /page-shop -->
+
+<!-- ═══════════════════════════════════
+     PAGE: CONTACT
+═══════════════════════════════════ -->
+<div id="page-contact" class="page">
+
+  <div class="page-hero">
+    <div class="page-hero-bg contact-hero-bg"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content container">
+      <span class="eyebrow">We'd Love to Hear From You</span>
+      <h1>Contact Us</h1>
+    </div>
+  </div>
+
+  <section class="section" style="background:var(--cream)">
+    <div class="container">
+      <div class="contact-layout">
+
+        <div class="fade-up">
+          <span class="eyebrow">Get in Touch</span>
+          <h3 style="margin-bottom:32px">Visit, Call, or Write</h3>
+
+          <div class="contact-detail">
+            <div class="contact-icon">📍</div>
+            <div class="contact-detail-text">
+              <h4>Tasting Room</h4>
+              <p>815 Sutter Street, Suite G<br>Folsom, CA 95630</p>
+              <a href="https://goo.gl/maps/AenveRA2PP7fY19h9" target="_blank" style="font-size:.82rem;color:var(--burg);font-weight:600">Get Directions →</a>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-icon">📞</div>
+            <div class="contact-detail-text">
+              <h4>Phone</h4>
+              <p><a href="tel:916-817-1962">916-817-1962</a></p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-detail-text">
+              <h4>Email</h4>
+              <p><a href="mailto:merlovineyards@gmail.com">merlovineyards@gmail.com</a></p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-icon">🕐</div>
+            <div class="contact-detail-text">
+              <h4>Tasting Room Hours</h4>
+              <table class="hours-table">
+                <tr><td>Monday</td><td>By Appointment</td></tr>
+                <tr><td>Tuesday</td><td>By Appointment</td></tr>
+                <tr><td>Wednesday</td><td>12 – 6 pm</td></tr>
+                <tr><td>Thursday</td><td>12 – 6 pm</td></tr>
+                <tr><td>Friday</td><td>12 – 8 pm</td></tr>
+                <tr><td>Saturday</td><td>12 – 8 pm</td></tr>
+                <tr><td>Sunday</td><td>12 – 6 pm</td></tr>
+              </table>
+            </div>
+          </div>
+
+          <div style="margin-top:32px;padding-top:32px;border-top:1px solid var(--cream-dk)">
+            <h4 style="font-family:'Raleway',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:16px">Follow Us</h4>
+            <div style="display:flex;gap:12px">
+              <a href="https://www.instagram.com/merlovineyards/" target="_blank" class="btn btn-outline" style="padding:10px 16px;font-size:.78rem">Instagram</a>
+              <a href="https://www.facebook.com/merlovineyards" target="_blank" class="btn btn-outline" style="padding:10px 16px;font-size:.78rem">Facebook</a>
+              <a href="https://twitter.com/merlovineyards" target="_blank" class="btn btn-outline" style="padding:10px 16px;font-size:.78rem">X / Twitter</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap fade-up" style="transition-delay:.15s">
+          <h3>Send Us a Message</h3>
+          <form onsubmit="handleContactForm(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" placeholder="Jane" required>
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" placeholder="Smith" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" placeholder="jane@example.com" required>
+            </div>
+            <div class="form-group">
+              <label>Subject</label>
+              <select>
+                <option>General Inquiry</option>
+                <option>Tasting Room Reservation</option>
+                <option>Wine Club Membership</option>
+                <option>Private Event</option>
+                <option>Trade / Distribution</option>
+                <option>Wine Order</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea placeholder="Tell us how we can help…" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Send Message</button>
+          </form>
+          <div id="formSuccess" style="display:none;margin-top:20px;padding:16px;background:#e8f5e9;border-left:3px solid #4caf50;font-size:.95rem;color:#2e7d32">
+            ✓ Thank you! Your message has been sent. We'll be in touch soon.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Map -->
+  <div class="map-section">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d3114.796734560414!2d-121.18094342346735!3d38.67653925970467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x809ae6acf462a3d3%3A0x4e7a33927895e827!2s815%20Sutter%20Street%2C%20Folsom%2C%20CA%2095630!3m2!1d38.676535099999995!2d-121.17836849999999!5e0!3m2!1sen!2sus!4v1682200143694!5m2!1sen!2sus"
+      loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Merlo Vineyards Location">
+    </iframe>
+  </div>
+
+</div><!-- /page-contact -->
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <img src="https://merlovineyards.com/wp-content/uploads/2023/03/Logo-2024.png" alt="Merlo Family Estate Vineyards">
+        </div>
+        <p>Award-winning estate wines from Hyampom Valley, Northern California. Tasting Room in Historic Old Town Folsom, CA.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/merlovineyards/" target="_blank" title="Instagram">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/merlovineyards" target="_blank" title="Facebook">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://twitter.com/merlovineyards" target="_blank" title="X / Twitter">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('home');return false">Home</a></li>
+          <li><a href="#" onclick="showPage('vineyard');return false">Our Vineyard</a></li>
+          <li><a href="#" onclick="showPage('tasting');return false">Tasting Room</a></li>
+          <li><a href="#" onclick="showPage('shop');return false">Shop Wines</a></li>
+          <li><a href="#" onclick="showPage('contact');return false">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Wines</h4>
+        <ul>
+          <li><a href="https://merlovineyards.orderport.net/wines/All-Wines" target="_blank">Estate Syrah</a></li>
+          <li><a href="https://merlovineyards.orderport.net/wines/All-Wines" target="_blank">Estate Zinfandel</a></li>
+          <li><a href="https://merlovineyards.orderport.net/wines/All-Wines" target="_blank">Blackbird Blend</a></li>
+          <li><a href="https://merlovineyards.orderport.net/wines/All-Wines" target="_blank">Estate Pinot Noir</a></li>
+          <li><a href="https://merlovineyards.orderport.net/wines/All-Wines" target="_blank">Estate Chardonnay</a></li>
+          <li><a href="https://merlovineyards.orderport.net/wine-club/" target="_blank">Wine Club</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <ul>
+          <li><a href="https://goo.gl/maps/AenveRA2PP7fY19h9" target="_blank">815 Sutter St, Ste G</a></li>
+          <li><a href="https://goo.gl/maps/AenveRA2PP7fY19h9" target="_blank">Folsom, CA 95630</a></li>
+          <li><a href="tel:916-817-1962">916-817-1962</a></li>
+          <li><a href="mailto:merlovineyards@gmail.com">Email Us</a></li>
+          <li><a href="https://merlovineyards.orderport.net/newsletter" target="_blank">Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="age-disclaimer">
+      You must be 21 years of age or older to purchase wine. Please drink responsibly. © 2025 Merlo Family Estate Vineyards. All rights reserved.
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Merlo Family Estate Vineyards</p>
+      <div style="display:flex;gap:24px">
+        <a href="https://merlovineyards.com/privacy-policy/" target="_blank">Privacy Policy</a>
+        <a href="https://merlovineyards.com/terms/" target="_blank">Terms &amp; Conditions</a>
+        <a href="https://merlovineyards.com/shipping-policies/" target="_blank">Shipping</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+// ─── Page Switching ───────────────────────────────────────────
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.dataset.page === name);
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(observeAnimations, 100);
+}
+
+// ─── Mobile Menu ───────────────────────────────────────────────
+function toggleMobile() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ─── Navbar scroll behaviour ──────────────────────────────────
+window.addEventListener('scroll', () => {
+  const nb = document.getElementById('navbar');
+  const activePage = document.querySelector('.page.active')?.id;
+  if (activePage === 'page-home') {
+    nb.classList.toggle('scrolled', window.scrollY > 60);
+    nb.classList.remove('solid');
+    if (window.scrollY <= 60) nb.classList.remove('scrolled');
+  }
+});
+
+// ─── Hero parallax / load ─────────────────────────────────────
+window.addEventListener('load', () => {
+  document.getElementById('heroBg').classList.add('loaded');
+});
+
+// ─── Scroll animations ────────────────────────────────────────
+function observeAnimations() {
+  const els = document.querySelectorAll('.page.active .fade-up');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  els.forEach(el => obs.observe(el));
+}
+observeAnimations();
+
+// ─── Shop Filter ──────────────────────────────────────────────
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    const filter = this.dataset.filter;
+    document.querySelectorAll('.product-card').forEach(card => {
+      if (filter === 'all' || card.dataset.type === filter) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+// ─── Lightbox ────────────────────────────────────────────────
+function openLightbox(el) {
+  const img = el.querySelector('img');
+  document.getElementById('lightboxImg').src = img.src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// ─── Contact Form ─────────────────────────────────────────────
+function handleContactForm(e) {
+  e.preventDefault();
+  document.getElementById('formSuccess').style.display = 'block';
+  e.target.reset();
+  setTimeout(() => document.getElementById('formSuccess').style.display = 'none', 6000);
+}
+
+// ─── Navbar stays solid on non-home pages ─────────────────────
+const origShowPage = showPage;
+</script>
+</body>
+</html>
