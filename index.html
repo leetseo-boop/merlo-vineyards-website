@@ -23,6 +23,7 @@
   --text-md:#5C4A40;
   --white:#fff;
   --nav-h:80px;
+  --radius:14px;
   --trans:all .35s cubic-bezier(.4,0,.2,1);
 }
 html{scroll-behavior:smooth;font-size:16px}
@@ -30,6 +31,12 @@ body{font-family:'Raleway',sans-serif;background:var(--cream);color:var(--text);
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 button{cursor:pointer;border:none;background:none;font-family:inherit}
+::selection{background:var(--burg);color:var(--white)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .fade-up{opacity:1;transform:none}
+}
 
 /* ─── UTILITY ─── */
 .container{max-width:1200px;margin:0 auto;padding:0 32px}
@@ -72,8 +79,8 @@ p{line-height:1.8;color:var(--text-md)}
   padding:0 40px;
   transition:background .4s ease,box-shadow .4s ease;
 }
-#navbar.scrolled{background:var(--espresso);box-shadow:0 2px 20px rgba(0,0,0,.3)}
-#navbar.solid{background:var(--espresso)}
+#navbar.scrolled{background:rgba(28,20,16,.82);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);box-shadow:0 2px 20px rgba(0,0,0,.3);border-bottom:1px solid rgba(196,154,59,.15)}
+#navbar.solid{background:rgba(28,20,16,.92);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid rgba(196,154,59,.15)}
 .nav-inner{width:100%;display:flex;align-items:center;justify-content:space-between}
 .nav-logo img{height:52px;filter:brightness(0) invert(1)}
 .nav-links{display:flex;align-items:center;gap:8px;list-style:none}
@@ -99,7 +106,7 @@ p{line-height:1.8;color:var(--text-md)}
 
 /* ─── HERO ─── */
 .hero{
-  position:relative;height:100vh;min-height:640px;
+  position:relative;height:100vh;height:100dvh;min-height:640px;
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;
 }
@@ -180,20 +187,22 @@ p{line-height:1.8;color:var(--text-md)}
 .section-header{text-align:center;margin-bottom:64px}
 .section-header h2{margin-bottom:16px}
 .section-header p{max-width:600px;margin:0 auto;font-size:1.05rem}
-.gold-divider{width:60px;height:2px;background:var(--gold);margin:20px auto}
+.gold-divider{width:80px;height:2px;background:linear-gradient(90deg,transparent,var(--gold) 25%,var(--gold) 75%,transparent);margin:20px auto;position:relative}
+.gold-divider::after{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(45deg);width:6px;height:6px;background:var(--gold)}
 
 /* ─── WINES GRID ─── */
 .wines-bg{background:var(--espresso)}
 .wines-bg .section-header h2,.wines-bg .eyebrow{color:var(--white)}
 .wines-bg .section-header p{color:rgba(255,255,255,.65)}
-.wines-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2px}
+.wines-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
 .wine-card{
   position:relative;background:rgba(255,255,255,.04);
   overflow:hidden;cursor:pointer;
   transition:var(--trans);
-  border:1px solid rgba(196,154,59,.1);
+  border:1px solid rgba(196,154,59,.12);
+  border-radius:var(--radius);
 }
-.wine-card:hover{background:rgba(255,255,255,.08);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.wine-card:hover{background:rgba(255,255,255,.08);transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.45);border-color:rgba(196,154,59,.4)}
 .wine-img{
   height:260px;overflow:hidden;
   background:linear-gradient(135deg,var(--burg-dk) 0%,#2A0E14 100%);
@@ -282,7 +291,7 @@ p{line-height:1.8;color:var(--text-md)}
 .quote-pull{
   padding:64px;background:var(--cream-dk);
   border-left:4px solid var(--gold);
-  margin:64px 0;
+  margin:64px 0;border-radius:0 var(--radius) var(--radius) 0;
 }
 .quote-pull q{
   font-family:'Cormorant Garamond',serif;
@@ -301,33 +310,56 @@ p{line-height:1.8;color:var(--text-md)}
 .tr-info-item p,.tr-info-item a{color:rgba(255,255,255,.85);font-size:.95rem;line-height:1.8}
 .tr-info-item a:hover{color:var(--gold-lt)}
 .gallery-section{background:var(--cream-dk)}
-.gallery-masonry{
-  columns:3;column-gap:16px;
-  margin-top:48px;
+.gallery-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:220px;grid-auto-flow:dense;
+  gap:14px;margin-top:48px;
 }
-.gallery-masonry .g-item{
-  break-inside:avoid;margin-bottom:16px;
-  overflow:hidden;position:relative;cursor:pointer;
-  border-radius:16px;
+.g-item{
+  position:relative;overflow:hidden;cursor:pointer;
+  border-radius:var(--radius);
+  background:var(--espresso);
 }
-.gallery-masonry .g-item img{
-  width:100%;display:block;
-  transition:transform .5s ease;
-  border-radius:16px;
+.g-item:nth-child(1){grid-column:span 2;grid-row:span 2}
+.g-item:nth-child(4){grid-row:span 2}
+.g-item:nth-child(6){grid-column:span 2}
+.g-item:nth-child(9){grid-column:span 2}
+.g-item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s cubic-bezier(.4,0,.2,1),opacity .4s ease;
 }
-.gallery-masonry .g-item:hover img{transform:scale(1.04)}
-.gallery-masonry .g-item::after{
-  content:'';position:absolute;inset:0;
-  background:rgba(107,31,42,0);transition:background .3s ease;
+.g-item:hover img{transform:scale(1.05)}
+.g-item::before{
+  content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top,rgba(28,20,16,.75) 0%,rgba(28,20,16,.1) 45%,transparent 65%);
+  opacity:0;transition:opacity .4s ease;
 }
-.gallery-masonry .g-item:hover::after{background:rgba(107,31,42,.2)}
+.g-item:hover::before{opacity:1}
+.g-caption{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:18px 20px;
+  color:var(--white);
+  transform:translateY(12px);opacity:0;
+  transition:transform .4s cubic-bezier(.4,0,.2,1),opacity .4s ease;
+}
+.g-item:hover .g-caption{transform:none;opacity:1}
+.g-caption span{
+  font-family:'Playfair Display',serif;font-size:1rem;font-weight:500;
+  letter-spacing:.02em;text-shadow:0 1px 8px rgba(0,0,0,.4);
+}
+.g-caption svg{flex-shrink:0;color:var(--gold-lt)}
+@media(hover:none){
+  .g-item::before{opacity:1}
+  .g-caption{transform:none;opacity:1}
+}
 .tr-awards{background:var(--espresso);padding:80px 0}
 .award-badge{
   display:inline-flex;flex-direction:column;align-items:center;
-  padding:32px;border:2px solid rgba(196,154,59,.3);
-  transition:var(--trans);
+  padding:32px;border:1px solid rgba(196,154,59,.3);
+  transition:var(--trans);border-radius:var(--radius);
 }
-.award-badge:hover{border-color:var(--gold);background:rgba(196,154,59,.05)}
+.award-badge:hover{border-color:var(--gold);background:rgba(196,154,59,.06);transform:translateY(-4px)}
 .award-badge img{height:80px;margin-bottom:16px}
 .award-badge h4{color:var(--white);text-align:center;font-size:1rem}
 .award-badge p{color:rgba(255,255,255,.55);font-size:.8rem;text-align:center;margin-top:4px}
@@ -347,9 +379,9 @@ p{line-height:1.8;color:var(--text-md)}
 .product-card{
   background:var(--white);border:1px solid rgba(0,0,0,.07);
   overflow:hidden;transition:var(--trans);
-  position:relative;
+  position:relative;border-radius:var(--radius);
 }
-.product-card:hover{box-shadow:0 20px 48px rgba(107,31,42,.15);transform:translateY(-4px)}
+.product-card:hover{box-shadow:0 20px 48px rgba(107,31,42,.16);transform:translateY(-6px);border-color:rgba(196,154,59,.45)}
 .product-img{
   height:280px;overflow:hidden;position:relative;
   background:linear-gradient(135deg,var(--cream) 0%,var(--cream-dk) 100%);
@@ -380,8 +412,10 @@ p{line-height:1.8;color:var(--text-md)}
 .wine-club-banner{
   background:linear-gradient(135deg,var(--burg-dk) 0%,var(--burg) 100%);
   padding:80px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;
-  margin-top:64px;
+  margin-top:64px;border-radius:var(--radius);
+  position:relative;overflow:hidden;
 }
+.wine-club-banner::before{content:'';position:absolute;top:-120px;right:-120px;width:380px;height:380px;background:rgba(196,154,59,.07);border-radius:50%;pointer-events:none}
 .wine-club-banner h2{color:var(--white);margin-bottom:12px}
 .wine-club-banner p{color:rgba(255,255,255,.7)}
 
@@ -402,7 +436,7 @@ p{line-height:1.8;color:var(--text-md)}
 .hours-table{width:100%;border-collapse:collapse;margin-top:16px}
 .hours-table td{padding:6px 0;font-size:.9rem;color:var(--text-md)}
 .hours-table td:first-child{color:var(--text);font-weight:600;width:120px}
-.contact-form-wrap{background:var(--white);padding:48px;box-shadow:0 8px 32px rgba(0,0,0,.08)}
+.contact-form-wrap{background:var(--white);padding:48px;box-shadow:0 8px 32px rgba(0,0,0,.08);border-radius:var(--radius)}
 .contact-form-wrap h3{margin-bottom:32px;color:var(--burg-dk)}
 .form-group{margin-bottom:24px}
 .form-group label{display:block;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-md);margin-bottom:8px}
@@ -412,7 +446,7 @@ p{line-height:1.8;color:var(--text-md)}
   font-family:'Raleway',sans-serif;font-size:.95rem;color:var(--text);
   transition:border-color .3s ease;border-radius:2px;
 }
-.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--burg);background:var(--white)}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--burg);background:var(--white);box-shadow:0 0 0 3px rgba(107,31,42,.12)}
 .form-group textarea{resize:vertical;min-height:120px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .map-section{padding:0}
@@ -450,17 +484,51 @@ footer{background:var(--espresso);padding:80px 0 40px}
 /* ─── LIGHTBOX ─── */
 .lightbox{
   display:none;position:fixed;inset:0;z-index:2000;
-  background:rgba(0,0,0,.95);
+  background:rgba(15,10,8,.94);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   align-items:center;justify-content:center;padding:32px;
+  flex-direction:column;gap:20px;
 }
-.lightbox.open{display:flex}
-.lightbox img{max-width:90vw;max-height:90vh;object-fit:contain}
+.lightbox.open{display:flex;animation:lbFade .3s ease}
+@keyframes lbFade{from{opacity:0}to{opacity:1}}
+.lightbox img{
+  max-width:88vw;max-height:78vh;object-fit:contain;
+  border-radius:8px;box-shadow:0 24px 80px rgba(0,0,0,.6);
+  animation:lbZoom .35s cubic-bezier(.4,0,.2,1);
+}
+@keyframes lbZoom{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+.lightbox-meta{
+  display:flex;align-items:center;gap:20px;
+  color:rgba(255,255,255,.85);
+}
+.lightbox-caption{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;letter-spacing:.02em}
+.lightbox-counter{font-size:.75rem;font-weight:600;letter-spacing:.15em;color:var(--gold-lt)}
 .lightbox-close{
-  position:absolute;top:24px;right:32px;
-  color:rgba(255,255,255,.7);font-size:2rem;cursor:pointer;
-  transition:color .3s ease;background:none;border:none;line-height:1;
+  position:absolute;top:24px;right:28px;z-index:3;
+  width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.75);cursor:pointer;
+  background:rgba(255,255,255,.08);border:none;
+  transition:var(--trans);
 }
-.lightbox-close:hover{color:var(--white)}
+.lightbox-close:hover{color:var(--white);background:rgba(255,255,255,.18);transform:rotate(90deg)}
+.lightbox-nav{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+  width:52px;height:52px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);
+  cursor:pointer;transition:var(--trans);border:none;
+}
+.lightbox-nav:hover{background:var(--gold);color:var(--espresso)}
+.lightbox-nav.prev{left:24px}
+.lightbox-nav.next{right:24px}
+@media(max-width:768px){
+  .lightbox{padding:16px}
+  .lightbox-nav{width:44px;height:44px}
+  .lightbox-nav.prev{left:8px}
+  .lightbox-nav.next{right:8px}
+  .lightbox-caption{font-size:.9rem}
+}
 
 /* ─── NEWSLETTER ─── */
 .newsletter{background:var(--cream-dk);padding:80px 0}
@@ -489,7 +557,7 @@ footer{background:var(--espresso);padding:80px 0 40px}
   .contact-layout{grid-template-columns:1fr}
   .stat-row{grid-template-columns:repeat(2,1fr)}
   .tr-info-grid{grid-template-columns:1fr}
-  .gallery-masonry{columns:2}
+  .gallery-grid{grid-template-columns:repeat(3,1fr);grid-auto-rows:200px}
 }
 @media(max-width:768px){
   :root{--nav-h:68px}
@@ -498,7 +566,8 @@ footer{background:var(--espresso);padding:80px 0 40px}
   .hero-btns{flex-direction:column;align-items:center}
   .awards-bar{display:none}
   .tr-teaser-content{padding:48px 24px}
-  .gallery-masonry{columns:2}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px;gap:10px}
+  .g-item:nth-child(6),.g-item:nth-child(9){grid-column:span 2}
   .footer-grid{grid-template-columns:1fr}
   .footer-bottom{flex-direction:column;text-align:center}
   .newsletter-form{flex-direction:column}
@@ -515,7 +584,7 @@ footer{background:var(--espresso);padding:80px 0 40px}
 @media(max-width:480px){
   .container{padding:0 20px}
   .section{padding:64px 0}
-  .gallery-masonry{columns:1}
+  .gallery-grid{grid-auto-rows:150px}
   .intro-text{padding:40px 20px}
   .tr-info-grid{grid-template-columns:1fr}
 }
@@ -594,7 +663,7 @@ footer{background:var(--espresso);padding:80px 0 40px}
       <div class="award-dot"></div>
       <div class="award-item"><span class="award-score">90</span><div><div class="award-name">Estate Chardonnay</div></div></div>
       <div class="award-dot"></div>
-      <div class="award-item" style="margin-right:32px"><span style="font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)">🥇 Gold — SF Chronicle Wine Competition</span></div>
+      <div class="award-item" style="margin-right:32px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E2C06A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg><span style="font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)">Gold — SF Chronicle Wine Competition</span></div>
       <!-- duplicate -->
       <div class="award-item"><span class="award-score">97</span><div><div class="award-name">Estate Syrah</div></div></div>
       <div class="award-dot"></div>
@@ -606,7 +675,7 @@ footer{background:var(--espresso);padding:80px 0 40px}
       <div class="award-dot"></div>
       <div class="award-item"><span class="award-score">90</span><div><div class="award-name">Estate Chardonnay</div></div></div>
       <div class="award-dot"></div>
-      <div class="award-item"><span style="font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)">🥇 Gold — SF Chronicle Wine Competition</span></div>
+      <div class="award-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E2C06A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg><span style="font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)">Gold — SF Chronicle Wine Competition</span></div>
     </div>
   </div>
 
@@ -852,16 +921,16 @@ footer{background:var(--espresso);padding:80px 0 40px}
     <div class="container">
       <div class="tr-info-grid">
         <div class="tr-info-item">
-          <h4>📍 Location</h4>
+          <h4><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Location</h4>
           <p>815 Sutter Street, Suite G<br>Folsom, CA 95630</p>
           <a href="https://goo.gl/maps/qRdixYoxtguHD4BW8" target="_blank" style="font-size:.82rem;color:var(--gold-lt);font-weight:600;letter-spacing:.05em">Get Directions →</a>
         </div>
         <div class="tr-info-item">
-          <h4>🕐 Hours</h4>
+          <h4><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Hours</h4>
           <p>Wed – Thu: 12 – 6 pm<br>Fri – Sat: 12 – 8 pm<br>Sun: 12 – 6 pm</p>
         </div>
         <div class="tr-info-item">
-          <h4>📞 Reservations</h4>
+          <h4><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>Reservations</h4>
           <p><a href="tel:916-817-1962">916-817-1962</a><br><a href="mailto:merlovineyards@gmail.com">merlovineyards@gmail.com</a></p>
           <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-top:6px">Groups &amp; private events by appointment</p>
         </div>
@@ -900,36 +969,45 @@ footer{background:var(--espresso);padding:80px 0 40px}
         <h2>Gallery</h2>
         <div class="gold-divider"></div>
       </div>
-      <div class="gallery-masonry">
-        <div class="g-item" onclick="openLightbox(this)">
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="g-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View Tasting Room Red Door" onkeydown="if(event.key==='Enter')openLightbox(this)">
           <img src="https://merlovineyards.com/wp-content/uploads/2023/04/reddoor.jpg" alt="Tasting Room Red Door" loading="lazy">
+          <div class="g-caption"><span>Tasting Room Red Door</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
         </div>
-        <div class="g-item" onclick="openLightbox(this)">
+        <div class="g-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View Wine Tasting" onkeydown="if(event.key==='Enter')openLightbox(this)">
           <img src="https://merlovineyards.com/wp-content/uploads/2023/04/taste1.jpg" alt="Wine Tasting" loading="lazy">
+          <div class="g-caption"><span>Wine Tasting</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
         </div>
-        <div class="g-item" onclick="openLightbox(this)">
+        <div class="g-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View Welcome to Tasting Room" onkeydown="if(event.key==='Enter')openLightbox(this)">
           <img src="https://merlovineyards.com/wp-content/uploads/2026/04/merlo-vineyards-tasting-room-welcome.webp" alt="Welcome to Tasting Room" loading="lazy"
             onerror="this.src='https://merlovineyards.com/wp-content/uploads/2023/08/DSCF849012678-scaled.jpg'">
+          <div class="g-caption"><span>Welcome to Tasting Room</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
         </div>
-        <div class="g-item" onclick="openLightbox(this)">
+        <div class="g-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View Wine Lineup" onkeydown="if(event.key==='Enter')openLightbox(this)">
           <img src="https://merlovineyards.com/wp-content/uploads/2023/04/winelineup.jpg" alt="Wine Lineup" loading="lazy">
+          <div class="g-caption"><span>Wine Lineup</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
         </div>
-        <div class="g-item" onclick="openLightbox(this)">
+        <div class="g-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View Tasting Room Fun" onkeydown="if(event.key==='Enter')openLightbox(this)">
           <img src="https://merlovineyards.com/wp-content/uploads/2026/04/merlo-vineyards-tasting-room-fun.webp" alt="Tasting Room Fun" loading="lazy"
             onerror="this.src='https://merlovineyards.com/wp-content/uploads/2024/08/thumbnail_IMG_9181.jpg'">
+          <div class="g-caption"><span>Tasting Room Fun</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
         </div>
-        <div class="g-item" onclick="openLightbox(this)">
+        <div class="g-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View Wine Event" onkeydown="if(event.key==='Enter')openLightbox(this)">
           <img src="https://merlovineyards.com/wp-content/uploads/2024/08/Wine-Event-Merlo-Family-Vineyards-Copy.jpg" alt="Wine Event" loading="lazy">
+          <div class="g-caption"><span>Wine Event</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
         </div>
-        <div class="g-item" onclick="openLightbox(this)">
+        <div class="g-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View Raymond Merlo Jr" onkeydown="if(event.key==='Enter')openLightbox(this)">
           <img src="https://merlovineyards.com/wp-content/uploads/2024/08/Rymond-Merlo-Jr-Merlo-Family-Vineyards-scaled.jpg" alt="Raymond Merlo Jr" loading="lazy">
+          <div class="g-caption"><span>Raymond Merlo Jr</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
         </div>
-        <div class="g-item" onclick="openLightbox(this)">
+        <div class="g-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View Tasting Room View" onkeydown="if(event.key==='Enter')openLightbox(this)">
           <img src="https://merlovineyards.com/wp-content/uploads/2026/04/merlo-vineyards-tasting-room-view.webp" alt="Tasting Room View" loading="lazy"
             onerror="this.src='https://merlovineyards.com/wp-content/uploads/2024/08/thumbnail_IMG_9183.jpg'">
+          <div class="g-caption"><span>Tasting Room View</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
         </div>
-        <div class="g-item" onclick="openLightbox(this)">
+        <div class="g-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View Chocolate and Wine Pairing" onkeydown="if(event.key==='Enter')openLightbox(this)">
           <img src="https://merlovineyards.com/wp-content/uploads/2023/03/chocolatewine.jpg" alt="Chocolate and Wine Pairing" loading="lazy">
+          <div class="g-caption"><span>Chocolate and Wine Pairing</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
         </div>
       </div>
     </div>
@@ -951,12 +1029,12 @@ footer{background:var(--espresso);padding:80px 0 40px}
           <p>Tasting Room Excellence</p>
         </div>
         <div class="award-badge fade-up" style="transition-delay:.1s">
-          <div style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--gold-lt);margin-bottom:16px">🥇</div>
+          <div style="margin-bottom:16px;color:var(--gold-lt)"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div>
           <h4>Gold Medal</h4>
           <p>Blackbird Blend · SF Chronicle Wine Competition</p>
         </div>
         <div class="award-badge fade-up" style="transition-delay:.2s">
-          <div style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--gold-lt);margin-bottom:16px">🥇</div>
+          <div style="margin-bottom:16px;color:var(--gold-lt)"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div>
           <h4>Gold Medal</h4>
           <p>Blackbird Blend · SF International Wine Competition</p>
         </div>
@@ -1049,7 +1127,7 @@ footer{background:var(--espresso);padding:80px 0 40px}
         <div class="product-card fade-up" data-type="red" style="transition-delay:.16s">
           <div class="product-img">
             <img src="https://merlovineyards.com/wp-content/uploads/2024/08/Wine-Event-Merlo-Family-Vineyards-Copy.jpg" alt="MFV Blackbird Blend" loading="lazy">
-            <span class="product-badge">Gold Medal 🥇</span>
+            <span class="product-badge">Gold Medal</span>
             <div class="product-score-badge"><span class="pts">93</span><span class="pts-lbl">pts</span></div>
           </div>
           <div class="product-info">
@@ -1154,7 +1232,7 @@ footer{background:var(--espresso);padding:80px 0 40px}
           <h3 style="margin-bottom:32px">Visit, Call, or Write</h3>
 
           <div class="contact-detail">
-            <div class="contact-icon">📍</div>
+            <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
             <div class="contact-detail-text">
               <h4>Tasting Room</h4>
               <p>815 Sutter Street, Suite G<br>Folsom, CA 95630</p>
@@ -1163,7 +1241,7 @@ footer{background:var(--espresso);padding:80px 0 40px}
           </div>
 
           <div class="contact-detail">
-            <div class="contact-icon">📞</div>
+            <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
             <div class="contact-detail-text">
               <h4>Phone</h4>
               <p><a href="tel:916-817-1962">916-817-1962</a></p>
@@ -1171,7 +1249,7 @@ footer{background:var(--espresso);padding:80px 0 40px}
           </div>
 
           <div class="contact-detail">
-            <div class="contact-icon">✉️</div>
+            <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
             <div class="contact-detail-text">
               <h4>Email</h4>
               <p><a href="mailto:merlovineyards@gmail.com">merlovineyards@gmail.com</a></p>
@@ -1179,7 +1257,7 @@ footer{background:var(--espresso);padding:80px 0 40px}
           </div>
 
           <div class="contact-detail">
-            <div class="contact-icon">🕐</div>
+            <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
             <div class="contact-detail-text">
               <h4>Tasting Room Hours</h4>
               <table class="hours-table">
@@ -1325,9 +1403,21 @@ footer{background:var(--espresso);padding:80px 0 40px}
 </footer>
 
 <!-- Lightbox -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-  <img id="lightboxImg" src="" alt="">
+<div class="lightbox" id="lightbox" onclick="closeLightbox()" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close image viewer">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <button class="lightbox-nav prev" onclick="event.stopPropagation();lightboxNav(-1)" aria-label="Previous image">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()">
+  <div class="lightbox-meta" onclick="event.stopPropagation()">
+    <span class="lightbox-caption" id="lightboxCaption"></span>
+    <span class="lightbox-counter" id="lightboxCounter"></span>
+  </div>
+  <button class="lightbox-nav next" onclick="event.stopPropagation();lightboxNav(1)" aria-label="Next image">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
 </div>
 
 <script>
@@ -1390,17 +1480,43 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 });
 
 // ─── Lightbox ────────────────────────────────────────────────
+let lbImages = [], lbIndex = 0;
 function openLightbox(el) {
-  const img = el.querySelector('img');
-  document.getElementById('lightboxImg').src = img.src;
+  const grid = el.closest('.gallery-grid');
+  lbImages = grid ? [...grid.querySelectorAll('.g-item img')] : [el.querySelector('img')];
+  lbIndex = lbImages.indexOf(el.querySelector('img'));
+  if (lbIndex < 0) lbIndex = 0;
+  updateLightbox();
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
+}
+function updateLightbox() {
+  const img = lbImages[lbIndex];
+  const lbImg = document.getElementById('lightboxImg');
+  lbImg.src = img.src;
+  lbImg.alt = img.alt;
+  document.getElementById('lightboxCaption').textContent = img.alt;
+  document.getElementById('lightboxCounter').textContent = lbImages.length > 1 ? (lbIndex + 1) + ' / ' + lbImages.length : '';
+  // retrigger zoom animation
+  lbImg.style.animation = 'none';
+  void lbImg.offsetWidth;
+  lbImg.style.animation = '';
+}
+function lightboxNav(dir) {
+  if (!lbImages.length) return;
+  lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length;
+  updateLightbox();
 }
 function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') lightboxNav(-1);
+  if (e.key === 'ArrowRight') lightboxNav(1);
+});
 
 // ─── Contact Form ─────────────────────────────────────────────
 function handleContactForm(e) {
